@@ -10,6 +10,10 @@ import Username from "./Username"
 import Name from "./Name"
 import More from "./More"
 
+function formatDate(date) {
+    return date.toLocaleDateString();
+}
+
 const testTweet = {
     message: "Something about cats.",
     gravatar: "xyz",
@@ -19,7 +23,7 @@ const testTweet = {
     },
     likes: 2,
     retweets: 0,
-    time: new Date() 
+    time: formatDate(new Date()) 
 };
 
 class Tweet extends Component {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Pokemon from "./Pokemon"
 
 class Header extends Component {
     // render() {
@@ -9,7 +10,7 @@ class Header extends Component {
     //     );
     // }
 
-    constructor() {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -36,7 +37,27 @@ class Header extends Component {
     }
 
     render() {
-        return <div>hello, {this.props.name}</div>
+        const { fetched, loading, species } = this.state
+
+        let content;
+
+        if(fetched){
+            content = (
+                <div className="poke-list">
+                    {species.map((pokemon,index) => (
+                        <Pokemon key={pokemon.name} id={index + 1} pokemon={pokemon} />
+                    ))}
+                </div>
+            )
+        }
+        else if (loading && !fetched) {
+            content = <div>Loading....</div>
+        }
+        else{
+            content = <div />
+        }
+
+        return <div>{content}</div>;
     }
 }
 
